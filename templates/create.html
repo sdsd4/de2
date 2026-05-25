@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+<h2>Новая заявка</h2>
+<form method="post">
+    <div class="help">Выберите курс:</div>
+    <select name="course">
+        <option>Веб-дизайн</option>
+        <option>Программирование</option>
+        <option>БД</option>
+    </select>
+    <div class="help">Желаемая дата начала курса:</div>
+    <input name="date" type="date">
+    <div class="help">Тип оплаты:</div>
+    <select name="payment">
+        <option>Наличные</option>
+        <option>Перевод</option>
+    </select>
+    <button>Создать</button>
+    <button><a href="/?page=my">Перейти в мои заявки</a></button>
+</form>
+</div>
+{% endblock %}

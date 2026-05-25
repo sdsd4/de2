@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+<h2>Регистрация</h2>
+<form method="post">
+    <input name="login" placeholder="Логин" required minlength="6" 
+    pattern="^[A-Za-z0-9]{6,}$" title="Латиница и цифры, минимум 6 символов">
+    <input name="password" type="password" placeholder="Пароль" required minlength="8">
+    <input name="fio" placeholder="ФИО">
+    <input name="phone" placeholder="Телефон">
+    <input name="email" type="email" placeholder="email">
+    <button>Создать</button>
+    <button><a href="/?page=login">Уже зарегистрированы?</a></button>
+</form>
+</div>
+{% endblock %}

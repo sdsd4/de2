@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}    
+<h2>Панель администратора</h2>
+<h2>Заявки пользователей</h2>
+<table>
+{% if r %}
+  <thead>
+    <tr>
+      <th>ФИО</th><th>Курс</th><th>Дата начала</th><th>Оплата</th>
+      <th>Статус</th><th>Сменить статус</th>
+    </tr> 
+  </thead>
+{% endif %}
+
+  <tbody>
+    {% for x in r %}
+    <tr>
+        <td>{{ x.fio }}</td><td>{{ x.course }}</td><td>{{ x.date }}</td>
+        <td>{{ x.payment }}</td><td>{{ x.status }}</td>
+        <td>
+            <a href="?page=admin&id={{ x.id }}&status=Идет">В работу |</a>
+            <a href="?page=admin&id={{ x.id }}&status=Завершено"> Закончить</a>
+        </td> 
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% if not r %}
+<h2>Заявок пока нет</h2>
+{% endif %}
+<div class="container">
+    <div class="menu"><a href="/?page=logout">Выход</a></div>
+</div>
+{% endblock %}
