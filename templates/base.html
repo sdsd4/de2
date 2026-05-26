@@ -2,19 +2,20 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width", initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
 *{font-family: sans-serif; text-decoration: none}
 body{margin: 0}
-.header a:visited, button a:visited,  .btn:visited{color:#fff !important}
+.header a, button a, .btn a{color:#fff}
+.header a:visited, button a:visited,  .btn:visited{color:#fff}
 .header{margin:0; text-align:center; background: #3749bb; color:#ffffff; 
   padding: 15px; font-size: 24px; position: sticky; top: 0}
 h2{text-align:center; font-size:18px}
-form{margin: 10px; padding: 20px; border-radius: 10px; background: #eaecfd}
+form{padding: 20px; border-radius: 10px; background: #eaecfd}
 .container{padding:15px;max-width:600px;margin:auto}
 input,select,textarea {width:100%;font-size:14px;padding:10px;
-  margin:5px 0;box-sizing:border-box}
+  margin:5px 0;box-sizing:border-box; border-width:0;border-radius:5px}
 button, .btn {background: #3749bb; color:#ffffff; padding:10px;margin:5px 0;
   width:100%;border-radius: 10px; margin:20 px; text-align:center; border-width:0; 
   font-size: 14px; cursor: pointer}
@@ -26,10 +27,15 @@ table {width: 90vw; margin: 0 auto; border-collapse: collapse}
 thead {background: #3749bb; color: #fff}
 th, td {padding: 12px 15px; text-align: left; border: 2px solid #e0e0e0}
 tbody tr:hover {background-color: #f0f4ff;}
-.slide {width:100%; height:200px; object-fit:cover; display:none; border-radius:10px}
+#slider {max-width: 600px; margin: 20px auto; position: relative}
+.slide {width:100%; height:250px; object-fit:cover; display:none; border-radius:10px}
 .slide:first-child {display: block}
-.nav-btn {width: 10%; background: rgba(0, 0, 0, 0.6); color:#fff; 
-  font-size:10px; cursor: pointer; border-radius: 6px}
+.nav-btn {position: absolute; top: 50%; transform: translateY(-50%); width: 40px;
+ height: 40px; border-radius: 50%; font-size: 15px; background: rgba(0,0,0,0.5);
+  color: #fff; border: none; cursor: pointer;}
+.nav-btn.left {left: 10px;}
+.nav-btn.right {right: 10px;}
+.error {font-size: 14px; color:red; margin-top:15px; text-align:center}
 </style>
 </head>
 <body>

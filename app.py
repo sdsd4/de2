@@ -36,6 +36,7 @@ def main():
                 if u['role']=='admin':
                     return redirect('/?page=admin')
                 else: return redirect('/?page=dashboard')
+            return render_template('login.html', e="Некорректный логин или пароль")
         if p == 'create' and 'id' in session:
             db("INSERT INTO requests (user_id,course,date,payment,status) VALUES (%s,%s,%s,%s,'Новая')",
                (session['id'], request.form['course'], request.form['date'], request.form['payment']))
@@ -52,15 +53,15 @@ def main():
     if p=='dashboard':
         return render_template('dashboard.html')
     if p=='create':
-        return render_template('create.html')
+        min_date = datetime.today() + timedelta(days=1)
+        return render_template('create.html', d=min_date)
     if p == 'my':
         r = db("SELECT * FROM requests WHERE user_id=%s", (session['id'],), fetch=True)
         return render_template('my.html', r=r)
     if p=='admin' and session.get('role')=='admin':
         if 'id' in request.args: db("UPDATE requests SET status=%s WHERE id=%s", (request.args['status'], request.args['id']))
         return render_template('admin.html', 
-                               r=db("SELECT requests.*, users.fio FROM requests JOIN users ON requests.user_id = users.id", 
-                                    fetch=True))
+                               r=db("SELECT requests.*, users.fio FROM requests JOIN users ON requests.user_id = users.id", fetch=True))
     
     return redirect('/?page=login')
 if __name__ == "__main__":
