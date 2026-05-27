@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 app = Flask(__name__)
 app.secret_key='secret'
 def db(sql, args=None, fetch=False):
-    with pymysql.connect(user='root', password='', database='korochki2', host='localhost', 
+    with pymysql.connect(user='root', password='', database='korochki2', host='localhost', port=3306,
                          cursorclass=pymysql.cursors.DictCursor, charset='utf8') as conn:
         cur = conn.cursor()
         cur.execute(sql, args or ())

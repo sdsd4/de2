@@ -1,27 +1,18 @@
 {% extends "base.html" %}
 {% block content %}    
-
-
 <h2>Мои заявки</h2>
-
 <table>
 {% if r %}
   <thead>
     <tr>
-      <th>Курс</th>
-      <th>Дата начала</th>
-      <th>Оплата</th>
-      <th>Статус</th>
+      <th>Курс</th><th>Дата начала</th><th>Оплата</th><th>Статус</th>
     </tr> 
   </thead>
 {% endif %}
-
   <tbody>
     {% for x in r %}
     <tr>
-      <td>{{ x.course }}</td>
-      <td>{{ x.date }}</td>
-      <td>{{ x.payment }}</td>
+      <td>{{ x.course }}</td><td>{{ x.date }}</td><td>{{ x.payment }}</td>
       <td>{{ x.status }}</td>
     </tr>
     {% endfor %}
@@ -43,6 +34,5 @@
   </form>
 {% endif %}
 {% endfor %}
-
 </div>
 {% endblock %}
