@@ -35,9 +35,8 @@
 {% if not r %}
 <h2>Заявок пока нет</h2>
 {% endif %}
+
 <div class="container">
-    <button>
-      <a href="/?page=logout">Выход</a>
-    </button>
+    <button type="button" onclick="location.href='/?page=logout'">Выход</button>
 </div>
 {% endblock %}

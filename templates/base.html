@@ -4,21 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Корочек.нет</title>
+
   <style>
 *{font-family: sans-serif; text-decoration: none}
 body{margin: 0}
 .header a, button a, .btn a{color:#fff}
 .header a:visited, button a:visited,  .btn:visited{color:#fff}
-.header{margin:0; text-align:center; background: #3749bb; color:#ffffff; 
+.header {display: flex; align-items: center; justify-content: center; gap: 12px; padding: 10px 15px;  
+  margin:0; text-align:center; background: #3749bb; color:#ffffff; 
   padding: 15px; font-size: 24px; position: sticky; top: 0}
 h2{text-align:center; font-size:18px}
 form{padding: 20px; border-radius: 10px; background: #eaecfd}
 .container{padding:15px;max-width:600px;margin:auto}
 input,select,textarea {width:100%;font-size:14px;padding:10px;
   margin:5px 0;box-sizing:border-box; border-width:0;border-radius:5px}
-button, .btn {background: #3749bb; color:#ffffff; padding:10px;margin:5px 0;
-  width:100%;border-radius: 10px; margin:20 px; text-align:center; border-width:0; 
-  font-size: 14px; cursor: pointer}
+button, .btn {background: #3749bb; color:#ffffff; padding:10px;margin:5px 0; width:100%;
+  border-radius: 10px; margin:20 px; text-align:center; border-width:0; font-size: 14px; cursor: pointer}
 button:hover {background-color: #5561b1;}
 .help{font-size: 14px;margin:5px 0 0 0}
 .menu a{display:block;background: #dfe3ff;margin:8px 0;padding:10px;
@@ -31,15 +32,18 @@ tbody tr:hover {background-color: #f0f4ff;}
 .slide {width:100%; height:250px; object-fit:cover; display:none; border-radius:10px}
 .slide:first-child {display: block}
 .nav-btn {position: absolute; top: 50%; transform: translateY(-50%); width: 40px;
- height: 40px; border-radius: 50%; font-size: 15px; background: rgba(0,0,0,0.5);
+  height: 40px; border-radius: 50%; font-size: 15px; background: rgba(0,0,0,0.5);
   color: #fff; border: none; cursor: pointer;}
 .nav-btn.left {left: 10px;}
 .nav-btn.right {right: 10px;}
 .error {font-size: 14px; color:red; margin-top:15px; text-align:center}
+.logo {height: 36px; width: auto; flex-shrink: 0; object-fit:contain}
 </style>
+
 </head>
 <body>
   <div class="header">
+    <img src="{{ url_for('static', filename='images/image01.webp') }}" class="logo">
     <a href="/?page=dashboard">Корочек.нет</a>
   </div>
   {% block content %}

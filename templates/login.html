@@ -8,7 +8,7 @@
     <input name="login" placeholder="Логин">
     <input name="password" type="password" placeholder="Пароль">
     <button>Войти</button>
-    <button><a href="/?page=register" type="btn">Регистрация</a></button>
+    <button type="button" onclick="location.href='/?page=register'">Регистрация</button>
     {% if e %}
     <div class="error">{{ e }}</div>
     {% endif %}
@@ -34,6 +34,5 @@
         clearInterval(autoTimer);
         autoTimer = setInterval(() => moveSlide(1), 3000)}
 </script>
-
 </div>
 {% endblock %}
