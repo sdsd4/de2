@@ -24,8 +24,10 @@ def main():
         return redirect('/?page=login')
     if request.method=='POST':
         if p == 'register':
-            db("INSERT INTO users (login, password, fio, phone, email, role) VALUES (%s, SHA2(%s,256), %s, %s, %s, 'user')",
-               (request.form['login'], request.form['password'], request.form['fio'], request.form['phone'], request.form['email']))
+            db("INSERT INTO users (login, password, fio, phone, email, role) " \
+            "VALUES (%s, SHA2(%s,256), %s, %s, %s, 'user')",
+               (request.form['login'], request.form['password'], request.form['fio'], 
+                request.form['phone'], request.form['email']))
             return render_template('msg.html', m="Вы зарегистрированы", l='/?page=login', t="Войти")
         if p == 'login':
             u = db('SELECT * FROM users WHERE login=%s AND password=SHA2(%s,256)',
@@ -45,7 +47,9 @@ def main():
             db("INSERT INTO reviews (user_id,request_id,text) VALUES (%s,%s,%s)",
             (session['id'], request.form['request_id'], request.form['text']))
             return redirect('/?page=my') 
-        
+    
+    if p in ['dashboard', 'my', 'review', 'admin'] and 'id' not in session:
+        return redirect('/?page=login')
     if p=='register':
         return render_template('register.html')
     if p=='login':
@@ -60,8 +64,7 @@ def main():
         return render_template('my.html', r=r)
     if p=='admin' and session.get('role')=='admin':
         if 'id' in request.args: db("UPDATE requests SET status=%s WHERE id=%s", (request.args['status'], request.args['id']))
-        return render_template('admin.html', 
-                               r=db("SELECT requests.*, users.fio FROM requests JOIN users ON requests.user_id = users.id", fetch=True))
+        return render_template('admin.html', r=db("SELECT requests.*, users.fio FROM requests JOIN users ON requests.user_id = users.id", fetch=True))
     
     return redirect('/?page=login')
 if __name__ == "__main__":
