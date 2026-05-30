@@ -1,42 +1,20 @@
 {% extends "base.html" %}
-{% block content %}    
-<h2>Панель администратора</h2>
-<h2>Заявки пользователей</h2>
-<table>
-{% if r %}
-  <thead>
-    <tr>
-      <th>ФИО</th>
-      <th>Курс</th>
-      <th>Дата начала</th>
-      <th>Оплата</th>
-      <th>Статус</th>
-      <th>Сменить статус</th>
-    </tr> 
-  </thead>
-{% endif %}
-  <tbody>
-    {% for x in r %}
-    <tr>
-        <td>{{ x.fio }}</td>
-        <td>{{ x.course }}</td>
-        <td>{{ x.date }}</td>
-        <td>{{ x.payment }}</td>
-        <td>{{ x.status }}</td>
-        <td>
-            <a href="?page=admin&id={{ x.id }}&status=Идет">В работу |</a>
-            <a href="?page=admin&id={{ x.id }}&status=Завершено"> Закончить</a>
-        </td> 
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+{% block content %}  
+<div class="container">
+<h2>Админка</h2>
+
+{% for x in r %}
+<form method="post">
+  <strong>№{{ x.id }}.</strong> {{ x.fio }} <br> {{ x.course }} | {{ x.date }} | {{ x.status }} <br>
+  <a href="?page=admin&id={{ x.id }}&status=Идет" class="btn">Начать</a>
+  <a href="?page=admin&id={{ x.id }}&status=Завершено" class="btn">Завершить</a>
+</form>
+{% endfor %}
 
 {% if not r %}
 <h2>Заявок пока нет</h2>
 {% endif %}
 
-<div class="container">
-    <button type="button" onclick="location.href='/?page=logout'">Выход</button>
+<button type="button" onclick="location.href='/?page=logout'">Выход</button>
 </div>
 {% endblock %}

@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 app = Flask(__name__)
 app.secret_key='secret'
 def db(sql, args=None, fetch=False):
-    with pymysql.connect(user='root', password='', database='korochki2', host='localhost', port=3306,
+    with pymysql.connect(host='localhost', port=3306, user='root', password='', database='korochki2', 
                          cursorclass=pymysql.cursors.DictCursor, charset='utf8') as conn:
         cur = conn.cursor()
         cur.execute(sql, args or ())
@@ -57,13 +57,13 @@ def main():
     if p=='dashboard':
         return render_template('dashboard.html')
     if p=='create':
-        min_date = datetime.today() + timedelta(days=1)
-        return render_template('create.html', d=min_date)
-    if p == 'my':
+        return render_template('create.html', d=datetime.today() + timedelta(days=1))
+    if p=='my':
         r = db("SELECT * FROM requests WHERE user_id=%s", (session['id'],), fetch=True)
         return render_template('my.html', r=r)
     if p=='admin' and session.get('role')=='admin':
-        if 'id' in request.args: db("UPDATE requests SET status=%s WHERE id=%s", (request.args['status'], request.args['id']))
+        if request.args.get('id'): 
+            db("UPDATE requests SET status=%s WHERE id=%s", (request.args['status'], request.args['id']))
         return render_template('admin.html', r=db("SELECT requests.*, users.fio FROM requests JOIN users ON requests.user_id = users.id", fetch=True))
     
     return redirect('/?page=login')

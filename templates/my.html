@@ -1,43 +1,31 @@
 {% extends "base.html" %}
-{% block content %}    
+{% block content %}  
+<div class="container">
 <h2>Мои заявки</h2>
-<table>
+
 {% if r %}
-  <thead>
-    <tr>
-      <th>Курс</th>
-      <th>Дата начала</th>
-      <th>Оплата</th>
-      <th>Статус</th>
-    </tr> 
-  </thead>
+{% for x in r %}
+<form method="post">
+    <strong>Курс:</strong> {{ x.course }} (дата начала: {{ x.date }}) <br>
+    <strong>Статус:</strong> {{ x.status }}
+    {% if x.status == 'Завершено' %}
+        <input type="hidden" name="request_id" value="{{ x.id }}">
+        <textarea name="text" placeholder="Можете оставить отзыв"></textarea>
+        <button>Отправить отзыв</button>
+    </form>
+    {% endif %}
+</form>
+{% endfor %}
 {% endif %}
-  <tbody>
-    {% for x in r %}
-    <tr>
-      <td>{{ x.course }}</td>
-      <td>{{ x.date }}</td>
-      <td>{{ x.payment }}</td>
-      <td>{{ x.status }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
 
 {% if not r %}
 <h2>Заявок пока нет</h2>
 {% endif %}
 
-<div class="container">
-{% for x in r %}
-{% if x.status == 'Завершено' %}
-  <form method="POST">
-      <input type="hidden" name="request_id" value="{{ x.id }}">
-      <p><strong>Курс:</strong> {{ x.course }}</p>
-      <textarea name="text" placeholder="Ваш отзыв"></textarea>
-      <button>Отправить</button>
-  </form>
-{% endif %}
-{% endfor %}
+<form>
+  <div class="help">Хотите пройти еще один курс?</div>
+  <button type="button" onclick="location.href='/?page=create'">Новая заявка</button>
+</form>
+
 </div>
 {% endblock %}
