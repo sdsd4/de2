@@ -11,9 +11,12 @@ body {margin: 0}
 .header {position: sticky; top: 0; display: flex; align-items: center; justify-content: center; gap: 12px; 
   margin: 0; padding: 15px; background: #3749bb; color: #fff; font-size: 24px}
 .logo {width: auto; height: 36px; flex-shrink: 0; object-fit: contain; border-radius: 50%}
+.footer {height: 80px; position: fixed; bottom: 0; left: 0; right: 0; display: flex; align-items: center; justify-content: center;
+  margin: 0; padding: 5px; background: #fff; color: #fff}
+.footer img {height: 80px; width: auto; object-fit: contain}
 
 h2 {font-size: 18px; text-align: center}
-.container {max-width: 600px; margin: auto; padding: 15px}
+.container {max-width: 600px; margin: auto; padding: 15px; padding-bottom: 110px;}
 form {margin-top:10px; padding: 15px; background: #eaecfd; border-radius: 20px; text-align: center}
 .error {margin-top: 15px; font-size: 14px; color: red; text-align: center}
 
@@ -26,7 +29,7 @@ input, select, textarea {box-sizing: border-box; width: 100%;
 button {width: 100%; margin: 5px 0; padding: 10px; font-size: 16px; color: #fff; 
   background: #3749bb; border: 0; border-radius: 10px; cursor: pointer}
 .btn {display:inline-block; width: 20%; margin: 10px 0; padding: 10px; font-size: 14px; color: #fff; 
-  background: #3749bb; border: 0; border-radius: 10px; cursor: pointer; text-align: center;}
+  background: #3749bb; border: 0; border-radius: 10px; cursor: pointer; text-align: center}
 button:hover, .btn:hover {background-color: #5561b1}
 
 .slider {position: relative; max-width: 600px; margin: 20px auto}
@@ -44,8 +47,12 @@ button:hover, .btn:hover {background-color: #5561b1}
     <img src="{{ url_for('static', filename='images/image01.webp') }}" class="logo">
     <a href="/?page=dashboard">Корочек.нет</a>
   </div>
+  <div class="container">
   {% block content %}
   {% endblock %}
+  </div>
 </body>
-
+  <div class="footer">
+    <img src="{{ url_for('static', filename='images/image16.jpg') }}">
+  </div>
 </html>

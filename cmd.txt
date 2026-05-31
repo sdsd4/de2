@@ -1,0 +1,25 @@
+pip install --no-index --find-links=/Users/sd/Downloads/libs flask pymysql datetime
+pip download flask pymysql datetime -d /Users/sd/Downloads/libs
+
+python3 --version
+ssh ваш_логин@IP_АДРЕС_СЕРВЕРА
+ping IP_АДРЕС_СЕРВЕРА
+
+python3 -m venv venv
+source venv/bin/activate
+pip install --no-index --find-links=/Users/sd/Downloads/libs flask pymysql datetime
+python3 app.py
+
+git init
+git config --global user.name "Ваше Имя Фамилия"
+git config --global user.email "ваш@email.com"
+git remote add origin ssh://ваш_логин@IP_СЕРВЕРА/путь/к/репозиторию.git
+echo "venv/" >> .gitignore
+git add .
+git commit -m "Описание того, что вы сделали"
+git push -u origin main
+или master
+git status
+git log
+
+pwd - полный путь к папке на сервере
