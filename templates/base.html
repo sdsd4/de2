@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Корочек.нет</title>
+  <link rel="icon" type="image/webp" href="{{ url_for('static', filename='images/image01.webp') }}">
 <style>
 * {font-family: sans-serif; text-decoration: none}
 body {margin: 0}
@@ -17,11 +18,12 @@ body {margin: 0}
 
 h2 {font-size: 18px; text-align: center}
 .container {max-width: 600px; margin: auto; padding: 15px; padding-bottom: 110px;}
-form {margin-top:10px; padding: 15px; background: #eaecfd; border-radius: 20px; text-align: center}
+form {margin-top: 10px; padding: 15px; background: #eaecfd; border-radius: 20px; text-align: center}
 .error {margin-top: 15px; font-size: 14px; color: red; text-align: center}
 
 input, select, textarea {box-sizing: border-box; width: 100%; 
   margin: 5px 0; padding: 10px; font-size: 14px; border: 0; border-radius: 5px}
+input:not(:placeholder-shown):invalid {border: 2px solid red; background-color: #fff0f0; outline: none}
 .help {margin: 5px; font-size: 16px; font-weight: bold; text-align: center}
 .menu a {display: block; margin: 8px 0; padding: 10px; text-align: center; 
   background: #dfe3ff; color: #333; border-radius: 10px}

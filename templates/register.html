@@ -2,21 +2,21 @@
 {% block content %}
 <h2>Регистрация</h2>
 <form method="post">
-    <input name="login" placeholder="Логин" 
+    <input name="login" placeholder="Логин (латиница и цифры, мин. 6 символов)" 
            required minlength="6" 
            pattern="^[A-Za-z0-9]{6,}$" 
-           title="Только латиница и цифры, минимум 6 символов">
-    <input name="password" type="password" placeholder="Пароль" 
+           title="Латиница и цифры, минимум 6 символов">
+    <input name="password" type="password" placeholder="Пароль (мин. 8 символов)" 
            required minlength="8" 
            title="Минимум 8 символов">
     <input name="fio" placeholder="ФИО" required 
            pattern="^[А-Яа-яЁё\s]+$" 
-           title="Только кириллица и пробелы">
-    <input name="phone" placeholder="Телефон" required 
+           title="Кириллица и пробелы">
+    <input name="phone" placeholder="Телефон в формате 8(XXX)XXX-XX-XX" required 
            pattern="^8\(\d{3}\)\d{3}-\d{2}-\d{2}$" 
            title="Формат: 8(XXX)XXX-XX-XX">
     <input name="email" type="email" placeholder="Email" required 
-           title="Введите корректный адрес электронной почты">
+           title="Введите корректный адрес">
     <button>Создать</button>
     <button type="button" onclick="location.href='/?page=login'">Уже зарегистрированы? Войти</button>
 </form>

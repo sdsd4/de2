@@ -13,7 +13,7 @@ def db(sql, args=None, fetch=False):
         return cur.fetchall() if fetch else None
 
 if not db("SELECT 1 FROM users WHERE login='Admin' LIMIT 1", fetch=True):
-    db("INSERT INTO users VALUES (NULL, %s, SHA2(%s, 256), %s, %s, %s, %s)",
+    db("INSERT INTO users VALUES (NULL, %s, MD5(%s), %s, %s, %s, %s)",
        ("Admin", "KorokNET", "Administrator", "000", "admin@local", "admin"))
 
 @app.route('/', methods = ['GET', 'POST'])
@@ -25,12 +25,12 @@ def main():
     if request.method=='POST':
         if p == 'register':
             db("INSERT INTO users (login, password, fio, phone, email, role) " \
-            "VALUES (%s, SHA2(%s,256), %s, %s, %s, 'user')",
+            "VALUES (%s, MD5(%s), %s, %s, %s, 'user')",
                (request.form['login'], request.form['password'], request.form['fio'], 
                 request.form['phone'], request.form['email']))
             return render_template('msg.html', m="Вы зарегистрированы", l='/?page=login', t="Войти")
         if p == 'login':
-            u = db('SELECT * FROM users WHERE login=%s AND password=SHA2(%s,256)',
+            u = db('SELECT * FROM users WHERE login=%s AND password=MD5(%s)',
                (request.form['login'], request.form['password']), fetch=True)
             u = u[0] if u else None
             if u:

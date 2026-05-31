@@ -1,7 +1,5 @@
 {% extends "base.html" %}
 {% block content %}  
 <h2>{{ m }}</h2>
-<button>
-    <a href="{{ l }}">{{ t }}</a>
-</button>
+<button type="button" onclick="location.href='{{ l }}'">{{ t }}</button>
 {% endblock %}
