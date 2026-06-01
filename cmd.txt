@@ -6,7 +6,8 @@ ssh ваш_логин@IP_АДРЕС_СЕРВЕРА
 ping IP_АДРЕС_СЕРВЕРА
 
 python3 -m venv venv
-source venv/bin/activate
+linux: source venv/bin/activate
+win: venv\Scripts\activate
 pip install --no-index --find-links=/Users/sd/Downloads/libs flask pymysql datetime
 python3 app.py
 
